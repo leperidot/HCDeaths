@@ -2,7 +2,7 @@
 ## Title: HCDeaths
 ## Author: Grylls, leperidot
 ## Notes: Displays and logs hardcore deaths
-## Version: 1.0.0
+## Version: 1.1.0
 ## SavedVariables: HCDeaths_Settings, HCDeaths, HCDeaths_LastWords
 
 HCDeaths.lua

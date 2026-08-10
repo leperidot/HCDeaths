@@ -6,6 +6,7 @@ end
 
 HCDeaths_Settings = {
 	message = true,
+	window = 0,
 	log = true,
 	toast = true,
 	color = false,
@@ -518,7 +519,27 @@ end
 function HCDeath:systemMessage(message)
 	if HCDeaths_Settings.message then
 		local info = ChatTypeInfo["SYSTEM"]
-		DEFAULT_CHAT_FRAME:AddMessage(message, info.r, info.g, info.b, info.id)
+		if HCDeaths_Settings.window == 1 then
+			ChatFrame1:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 2 then
+			ChatFrame2:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 3 then
+			ChatFrame3:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 4 then
+			ChatFrame4:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 5 then
+			ChatFrame5:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 6 then
+			ChatFrame6:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 7 then
+			ChatFrame7:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 8 then
+			ChatFrame8:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 9 then
+			ChatFrame9:AddMessage(message, info.r, info.g, info.b, info.id)
+		else
+			DEFAULT_CHAT_FRAME:AddMessage(message, info.r, info.g, info.b, info.id)
+		end
 	end
 end
 
@@ -701,6 +722,7 @@ end
 
 function HCDeath:reset()
 	HCDeaths_Settings.message = true
+	HCDeaths_Settings.window = 0
 	HCDeaths_Settings.log = true
 	HCDeaths_Settings.toast = true
 	HCDeaths_Settings.color = false
@@ -756,6 +778,10 @@ local function HCDeaths_commands(msg, editbox)
 		HCDeaths_Settings.logscale = num
 		HCDeath:LogScale()
 		HCDeath:print("log scale set to "..HCDeaths_Settings.logscale)
+	elseif string.find(msg, "window %d") then
+		num = fontnum(msg)
+		HCDeaths_Settings.window = num
+		HCDeath:print("Messages will show in window "..HCDeaths_Settings.window)
 	elseif msg == "message" then
 		if HCDeaths_Settings.message then
 			HCDeaths_Settings.message = false
@@ -826,6 +852,7 @@ local function HCDeaths_commands(msg, editbox)
     else
 		HCDeath:print("commands:")
 		HCDeath:print("/hcd message - toggle system death messages")
+		HCDeath:print("/hcd window num - hook death messages to a specific chat window")
 		HCDeath:print("/hcd move - toggles the toast so you can move it")
 		HCDeath:print("/hcd log - toggle death log")		
 		HCDeath:print("/hcd log scale num - sets the death log scale to num")
