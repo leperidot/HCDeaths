@@ -597,8 +597,8 @@ function ChatFrame_OnEvent(event)
 		-- PLAYERNAME added to friends
 		-- PLAYERNAME removed from friends
 
-		local _, _, hcprogress = string.find(arg1, "(%a+) has reached level (%d%d) in Hardcore mode")
-		local _, _, hcimmortal = string.find(arg1, "(%a+) has transcended death and reached level 60")
+		local _, _, hcprogress = string.find(arg1, "(%a+) has reached level (%d%d)")
+		-- local _, _, hcimmortal = string.find(arg1, "(%a+) has transcended death and reached level 60")
 		local _, _, hcdeath = string.find(arg1,"A tragedy has occurred. Hardcore character (%a+)")
 		-- local _, _, infstart = string.find(arg1,"(%a+) has begun the Inferno Challenge")
 		-- local _, _, infdeath = string.find(arg1,"A tragedy has occurred. Inferno character (%a+)")
