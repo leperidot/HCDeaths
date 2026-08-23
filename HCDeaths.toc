@@ -1,6 +1,6 @@
 ## Interface: 11200
 ## Title: HCDeaths
-## Author: Grylls, leperidot
+## Author: leperidot, Grylls
 ## Notes: Displays and logs hardcore deaths
 ## Version: 1.1.1
 ## SavedVariables: HCDeaths_Settings, HCDeaths, HCDeaths_LastWords

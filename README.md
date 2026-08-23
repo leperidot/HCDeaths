@@ -8,6 +8,7 @@ You can reset the toast or log position by holding ctrl and shift and right clic
 
 ## Commands:
 - /hcd message - toggle system death messages
+- /hcd window num - hook death messages to a specific chat window
 - /hcd move - toggles the toast so you can move it
 - /hcd log - toggle death log		
 - /hcd log scale num - sets the death log scale to num
