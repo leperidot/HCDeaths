@@ -602,7 +602,7 @@ function ChatFrame_OnEvent(event)
 		local _, _, hcdeath = string.find(arg1,"A tragedy has occurred. Hardcore character (%a+)")
 		-- local _, _, infstart = string.find(arg1,"(%a+) has begun the Inferno Challenge")
 		-- local _, _, infdeath = string.find(arg1,"A tragedy has occurred. Inferno character (%a+)")
-		local _, _, hcleave = string.find(arg1,"(%a+) has crossed over")
+		local _, _, hcleave = string.find(arg1,"(%a+) has crossed ")
 
 		_, _, addedFriend = string.find(arg1,"(%a+) added to friends")
 		_, _, removedFriend = string.find(arg1,"(%a+) removed from friends")
