@@ -787,6 +787,7 @@ local function HCDeaths_commands(msg, editbox)
 		num = fontnum(msg)
 		HCDeaths_Settings.window = num
 		HCDeath:print("Messages will show in window "..HCDeaths_Settings.window)
+		HCDeath:systemMessage("Messages will show HERE!")
 	elseif msg == "message" then
 		if HCDeaths_Settings.message then
 			HCDeaths_Settings.message = false
