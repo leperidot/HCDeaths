@@ -6,6 +6,7 @@ end
 
 HCDeaths_Settings = {
 	message = true,
+	window = 0,
 	log = true,
 	toast = true,
 	color = false,
@@ -518,7 +519,27 @@ end
 function HCDeath:systemMessage(message)
 	if HCDeaths_Settings.message then
 		local info = ChatTypeInfo["SYSTEM"]
-		DEFAULT_CHAT_FRAME:AddMessage(message, info.r, info.g, info.b, info.id)
+		if HCDeaths_Settings.window == 1 then
+			ChatFrame1:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 2 then
+			ChatFrame2:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 3 then
+			ChatFrame3:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 4 then
+			ChatFrame4:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 5 then
+			ChatFrame5:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 6 then
+			ChatFrame6:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 7 then
+			ChatFrame7:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 8 then
+			ChatFrame8:AddMessage(message, info.r, info.g, info.b, info.id)
+		elseif HCDeaths_Settings.window == 9 then
+			ChatFrame9:AddMessage(message, info.r, info.g, info.b, info.id)
+		else
+			DEFAULT_CHAT_FRAME:AddMessage(message, info.r, info.g, info.b, info.id)
+		end
 	end
 end
 
@@ -576,11 +597,12 @@ function ChatFrame_OnEvent(event)
 		-- PLAYERNAME added to friends
 		-- PLAYERNAME removed from friends
 
-		local _, _, hcprogress = string.find(arg1, "(%a+) has reached level (%d%d) in Hardcore mode")
-		local _, _, hcimmortal = string.find(arg1, "(%a+) has transcended death and reached level 60")
+		local _, _, hcprogress = string.find(arg1, "(%a+) has reached level (%d%d)")
+		-- local _, _, hcimmortal = string.find(arg1, "(%a+) has transcended death and reached level 60")
 		local _, _, hcdeath = string.find(arg1,"A tragedy has occurred. Hardcore character (%a+)")
 		-- local _, _, infstart = string.find(arg1,"(%a+) has begun the Inferno Challenge")
 		-- local _, _, infdeath = string.find(arg1,"A tragedy has occurred. Inferno character (%a+)")
+		local _, _, hcleave = string.find(arg1,"(%a+) has crossed ")
 
 		_, _, addedFriend = string.find(arg1,"(%a+) added to friends")
 		_, _, removedFriend = string.find(arg1,"(%a+) removed from friends")
@@ -681,6 +703,10 @@ function ChatFrame_OnEvent(event)
 				return
 			end
 			return
+		elseif hcleave then
+			-- Log HC message in the right window
+			HCDeath:systemMessage(arg1)
+			return
 		end
 
 		if addedFriend or alreadyFriend then
@@ -701,6 +727,7 @@ end
 
 function HCDeath:reset()
 	HCDeaths_Settings.message = true
+	HCDeaths_Settings.window = 0
 	HCDeaths_Settings.log = true
 	HCDeaths_Settings.toast = true
 	HCDeaths_Settings.color = false
@@ -756,6 +783,11 @@ local function HCDeaths_commands(msg, editbox)
 		HCDeaths_Settings.logscale = num
 		HCDeath:LogScale()
 		HCDeath:print("log scale set to "..HCDeaths_Settings.logscale)
+	elseif string.find(msg, "window %d") then
+		num = fontnum(msg)
+		HCDeaths_Settings.window = num
+		HCDeath:print("Messages will show in window "..HCDeaths_Settings.window)
+		HCDeath:systemMessage("Messages will show HERE!")
 	elseif msg == "message" then
 		if HCDeaths_Settings.message then
 			HCDeaths_Settings.message = false
@@ -826,6 +858,7 @@ local function HCDeaths_commands(msg, editbox)
     else
 		HCDeath:print("commands:")
 		HCDeath:print("/hcd message - toggle system death messages")
+		HCDeath:print("/hcd window num - hook death messages to a specific chat window")
 		HCDeath:print("/hcd move - toggles the toast so you can move it")
 		HCDeath:print("/hcd log - toggle death log")		
 		HCDeath:print("/hcd log scale num - sets the death log scale to num")
