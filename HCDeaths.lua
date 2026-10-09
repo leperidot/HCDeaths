@@ -662,10 +662,11 @@ function ChatFrame_OnEvent(event)
 			-- 	hcType = "INF"
 			-- end			
 
-			local pvp, natural, playerLevel, deathType, killerName, killerLevel, killerClass
+			local pvp, natural, drowned, playerLevel, deathType, killerName, killerLevel, killerClass
 			_, _, pvp = string.find(arg1,"(PvP)")
 			_, _, natural = string.find(arg1,"(natural causes)")
 			_, _, playerLevel = string.find(arg1,"at level (%d+)")
+			_, _, drowned = string.find(arg1,"(has drowned)")
 
 			if pvp then 
 				deathType = "PVP"
@@ -674,6 +675,9 @@ function ChatFrame_OnEvent(event)
 				deathType = "PVE"
 				if natural then
 					killerName = "Natural Causes"
+					killerClass = "ENV"
+				elseif drowned then
+					killerName = "Suffocation"
 					killerClass = "ENV"
 				else
 					_, _, killerName = string.find(arg1,"to%s+(.-)%s*%(")
